@@ -6,6 +6,11 @@ module.exports.findAllProducts = (req,res) => {
         .then(allProducts => res.json({ products: allProducts}))
         .catch(err => res.status(200).json({message:"Somthing went wrong!", error: err}));
 };
+module.exports.findOneProduct = (req,res) => {
+    Product.find({_id: req.params.id})
+        .then(oneProduct => res.json({ product: oneProduct}))
+        .catch(err => res.status(200).json({message:"Somthing went wrong!", error: err}));
+};
 module.exports.createProducts = (req,res) => {
     let {title, price, description} = req.body;
     Product.create({
